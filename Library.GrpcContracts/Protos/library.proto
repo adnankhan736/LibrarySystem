@@ -1,0 +1,63 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Library.GrpcContracts";
+
+
+package library;
+
+service LibraryService {
+  rpc GetMostBorrowedBooks (Empty) returns (BookList);
+  rpc GetBookAvailability (BookRequest) returns (BookAvailability);
+  rpc GetTopBorrowers (DateRange) returns (UserList);
+  rpc GetUserBorrowedBooks (UserDateRequest) returns (BookList);
+  rpc GetBooksBorrowedWith (BookRequest) returns (BookList);
+  rpc EstimateReadingRate (BorrowRecordRequest) returns (ReadingRate);
+}
+
+message Empty {}
+
+message Book {
+  int32 id = 1;
+  string title = 2;
+}
+
+message User {
+  int32 id = 1;
+  string name = 2;
+}
+
+message BookList {
+  repeated Book books = 1;
+}
+
+message UserList {
+  repeated User users = 1;
+}
+
+message BookRequest {
+  int32 book_id = 1;
+}
+
+message UserDateRequest {
+  int32 user_id = 1;
+  string start_date = 2;
+  string end_date = 3;
+}
+
+message DateRange {
+  string start_date = 1;
+  string end_date = 2;
+}
+
+message BorrowRecordRequest {
+  int32 borrow_record_id = 1;
+}
+
+message BookAvailability {
+  int32 borrowed = 1;
+  int32 available = 2;
+}
+
+message ReadingRate {
+  double pages_per_day = 1;
+}

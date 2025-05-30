@@ -8,11 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.71.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Library.Proto\Library.Proto.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Library.GrpcContracts\Library.GrpcContracts.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="..\Library.GrpcContracts\Protos\library.proto" GrpcServices="Client" />
+	</ItemGroup>
 
 </Project>

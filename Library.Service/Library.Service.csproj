@@ -1,23 +1,36 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-  </ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="Protos\**" />
+	  <Content Remove="Protos\**" />
+	  <EmbeddedResource Remove="Protos\**" />
+	  <None Remove="Protos\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.71.0">
+			<PrivateAssets>All</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Library.Domain\Library.Domain.csproj" />
-    <ProjectReference Include="..\Library.Infrastructure\Library.Infrastructure.csproj" />
-    <ProjectReference Include="..\Library.Proto\Library.Proto.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Library.Application\Library.Application.csproj" />
+		<ProjectReference Include="..\Library.GrpcContracts\Library.GrpcContracts.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="..\Library.GrpcContracts\Protos\library.proto" GrpcServices="Server" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Interfaces\" />
+	</ItemGroup>
 
 </Project>
