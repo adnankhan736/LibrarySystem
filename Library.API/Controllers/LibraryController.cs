@@ -193,7 +193,7 @@ public class LibraryController : ControllerBase
         {
             return NotFound(ex.Status.Detail);
         }
-        catch (RpcException ex) when (ex.StatusCode == Grpc.Core.StatusCode.FailedPrecondition)
+        catch (RpcException ex) when (ex.StatusCode == Grpc.Core.StatusCode.InvalidArgument)
         {
             return BadRequest(ex.Status.Detail);
         }

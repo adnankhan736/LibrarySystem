@@ -151,15 +151,15 @@ namespace Library.Application.Services
                 throw new RpcException(new Status(StatusCode.NotFound, $"Borrow record with ID {borrowRecordId} not found."));
 
             if (record.ReturnDate == null)
-                throw new RpcException(new Status(StatusCode.FailedPrecondition, "Borrow record has no return date."));
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Return date is required."));
 
             if (record.Book == null || record.Book.Pages <= 0)
-                throw new RpcException(new Status(StatusCode.FailedPrecondition, "Book information is missing or invalid."));
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Book information is missing or invalid."));
 
             var days = (record.ReturnDate.Value - record.BorrowDate).TotalDays;
 
             if (days <= 0)
-                throw new RpcException(new Status(StatusCode.FailedPrecondition, "Invalid borrow duration."));
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Return date must be after borrow date."));
 
             return record.Book.Pages / days;
         }
