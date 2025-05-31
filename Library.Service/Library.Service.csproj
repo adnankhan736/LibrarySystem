@@ -18,6 +18,10 @@
 		<PackageReference Include="Grpc.Tools" Version="2.71.0">
 			<PrivateAssets>All</PrivateAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		  <PrivateAssets>all</PrivateAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -26,7 +30,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Protobuf Include="..\Library.GrpcContracts\Protos\library.proto" GrpcServices="Server" />
+		<PackageReference Include="Google.Protobuf" Version="3.30.2" />
+
 	</ItemGroup>
 
 	<ItemGroup>

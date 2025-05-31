@@ -1,7 +1,9 @@
 ﻿using Library.Domain.Entities;
+using Library.Infrastructure.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library.Infrastructure.Data;
+
 public class LibraryDbContext : DbContext
 {
     public DbSet<Book> Books { get; set; }
@@ -14,15 +16,10 @@ public class LibraryDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Configure relationships
-        modelBuilder.Entity<BorrowRecord>()
-            .HasOne(br => br.Book)
-            .WithMany(b => b.BorrowRecords)
-            .HasForeignKey(br => br.BookId);
+        modelBuilder.ApplyConfiguration(new BookConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
+        modelBuilder.ApplyConfiguration(new BorrowRecordConfiguration());
 
-        modelBuilder.Entity<BorrowRecord>()
-            .HasOne(br => br.User)
-            .WithMany(b => b.BorrowRecords)
-            .HasForeignKey(br => br.UserId);
+        DataSeeder.Seed(modelBuilder);
     }
 }

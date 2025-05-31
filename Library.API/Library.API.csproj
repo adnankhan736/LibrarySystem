@@ -10,12 +10,17 @@
     <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
     <PackageReference Include="Grpc.Net.ClientFactory" Version="2.71.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.2" />
+    <PackageReference Include="Swashbuckle.NodaTime.AspNetCore" Version="5.0.2" />
   </ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Library.GrpcContracts\Library.GrpcContracts.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" Version="3.30.2" />
 
+	</ItemGroup>
 	<ItemGroup>
 		<Protobuf Include="..\Library.GrpcContracts\Protos\library.proto" GrpcServices="Client" />
 	</ItemGroup>
