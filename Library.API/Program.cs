@@ -1,29 +1,54 @@
 using Library.GrpcContracts;
 
+namespace Library.API;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddControllers(); // Required for Web API controllers
-builder.Services.AddEndpointsApiExplorer(); // Required for Swagger
-builder.Services.AddSwaggerGen(); // Enables Swagger UI
-
-builder.Services.AddGrpcClient<LibraryService.LibraryServiceClient>(options =>
+public class Program
 {
-    options.Address = new Uri("https://localhost:7179"); // gRPC server from Library.Service
-});
+    public static void Main(string[] args)
+    {
+        var builder = CreateWebApplicationBuilder(args);
+        var app = BuildApp(builder);
+        app.Run();
+    }
 
-var app = builder.Build();
+    public static WebApplicationBuilder CreateWebApplicationBuilder(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+        // Add services to the container
+        builder.Services.AddControllers()
+              .AddNewtonsoftJson(options =>
+              {
+                  options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+              });
+
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        builder.Services.AddGrpcClient<LibraryService.LibraryServiceClient>(options =>
+        {
+            var grpcAddress = builder.Configuration.GetValue<string>("GrpcSettings:LibraryServiceUrl")
+                              ?? "https://localhost:7179";
+            options.Address = new Uri(grpcAddress);
+        });
+
+        return builder;
+    }
+
+    public static WebApplication BuildApp(WebApplicationBuilder builder)
+    {
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+        app.MapControllers();
+
+        return app;
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.MapControllers(); // Maps controller endpoints like /api/library/...
-
-app.Run();
