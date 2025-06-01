@@ -27,7 +27,7 @@ public class GrpcTestBase : IAsyncLifetime
                     config.AddInMemoryCollection(new Dictionary<string, string>
                     {
                         ["ConnectionStrings:DefaultConnection"] =
-                            @"Server=(localdb)\mssqllocaldb;Database=LibraryTestDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+                            @"Server=(localdb)\mssqllocaldb;Database=LibraryFunctionalTestDb;Trusted_Connection=True;MultipleActiveResultSets=true"
                     });
                 });
             });

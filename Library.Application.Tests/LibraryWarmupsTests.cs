@@ -2,6 +2,7 @@
 using System.IO;
 using Xunit;
 
+namespace Library.Application.Tests;
 public class LibraryWarmupsTests
 {
     [Theory]

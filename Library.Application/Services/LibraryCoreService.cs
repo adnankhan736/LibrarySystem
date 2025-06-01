@@ -156,7 +156,7 @@ namespace Library.Application.Services
             if (record.Book == null || record.Book.Pages <= 0)
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Book information is missing or invalid."));
 
-            var days = (record.ReturnDate.Value - record.BorrowDate).TotalDays;
+            var days = (record.ReturnDate.Value - record.BorrowDate).TotalDays + 1;
 
             if (days <= 0)
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Return date must be after borrow date."));

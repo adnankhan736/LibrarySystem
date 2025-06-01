@@ -24,7 +24,7 @@ public class EstimateReadingRateTestData
                 }
             },
             1, // BorrowRecordId
-            30.0 // Expected reading rate
+            25.0 // Expected reading rate
         };
     }
 
@@ -42,7 +42,7 @@ public class EstimateReadingRateTestData
                 {
                     Id = 2,
                     BookId = 2,
-                    BorrowDate = new DateTime(2023, 1, 1),
+                    BorrowDate = new DateTime(2023, 1, 2),
                     ReturnDate = new DateTime(2023, 1, 1)
                 }
             },
