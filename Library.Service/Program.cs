@@ -25,8 +25,12 @@ public class Program
 
         using (var scope = app.Services.CreateScope())
         {
-            var db = scope.ServiceProvider.GetRequiredService<LibraryDbContext>();
-            db.Database.Migrate();
+            var env = scope.ServiceProvider.GetRequiredService<IHostEnvironment>();
+            if (!env.IsEnvironment("Testing")) // Skip migration when running tests
+            {
+                var db = scope.ServiceProvider.GetRequiredService<LibraryDbContext>();
+                db.Database.Migrate();
+            }
         }
 
         app.MapGrpcService<LibraryGrpcService>();

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Xunit;
 using Library.GrpcContracts;
 using GrpcService = Library.Service;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 
 public class GrpcTestBase : IAsyncLifetime
 {
@@ -21,14 +23,16 @@ public class GrpcTestBase : IAsyncLifetime
         _factory = new WebApplicationFactory<GrpcService.Program>()
             .WithWebHostBuilder(builder =>
             {
+                builder.UseEnvironment("Testing");
                 builder.ConfigureAppConfiguration((context, config) =>
                 {
                     // Override connection string for tests
                     config.AddInMemoryCollection(new Dictionary<string, string>
                     {
                         ["ConnectionStrings:DefaultConnection"] =
-                            @"Server=Server=.;Database=FunctionalTestLibraryDb;Trusted_Connection=True;MultipleActiveResultSets=true;Encrypt=False"
+                        @"Server=Server=.;Database=FunctionalTestLibraryDb;Trusted_Connection=True;MultipleActiveResultSets=true;Encrypt=False"
                     });
+
                 });
             });
         var baseAddress = "http://localhost:5023";

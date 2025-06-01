@@ -16,6 +16,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.5" />
 		<PackageReference Include="Grpc.Tools" Version="2.71.0">
 			<PrivateAssets>All</PrivateAssets>
 		</PackageReference>

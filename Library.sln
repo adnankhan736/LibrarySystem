@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.GrpcContracts", "Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Application", "Library.Application\Library.Application.csproj", "{043CC4AC-4387-420B-8D1B-F15A9522778C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Application.UnitTests", "Library.Application.Tests\Library.Application.UnitTests.csproj", "{65FDDFDB-3DDB-4233-A88B-90993CB26B82}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Application.UnitTests", "Library.Application.UnitTests\Library.Application.UnitTests.csproj", "{65FDDFDB-3DDB-4233-A88B-90993CB26B82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Service.FunctionalTests", "Library.IntegrationTests\Library.Service.FunctionalTests.csproj", "{F2ED112D-90CF-4EB1-BCA8-50AF4FD17828}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Service.FunctionalTests", "Library.Service.FunctionalTests\Library.Service.FunctionalTests.csproj", "{F2ED112D-90CF-4EB1-BCA8-50AF4FD17828}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Application.IntegrationTests", "Library.Application.IntegrationTests\Library.Application.IntegrationTests.csproj", "{90DF064B-2779-4643-B806-BFF9AA59E851}"
 EndProject
